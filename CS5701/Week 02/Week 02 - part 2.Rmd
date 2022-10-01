@@ -1,0 +1,185 @@
+---
+title: "Week 02 - part 2"
+author: "Fiona Kate Morgan"
+date: "2022-09-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 4. Load in the auto data from the csv file and assign to a variable. 
+
+I've used 'autodata' to avoid any confusion with the data in the first part of the lab.
+```{r}
+autodata<-read.csv("data/auto-mpg.csv")
+```
+
+# 5. Explore the data (using summary statistics and plots) and check which columns from the continuous variables look normally distributed
+
+```{r}
+summary(autodata)
+```
+
+There are 9 variables. 
+7 are numerical, 2 are categorical. 
+
+*mpg*
+The mean and median are close to each other, and the quartiles are a similar distance from the mean - suggesting it could be a normal distribution... so I will use a histogram to see whether this is the case.
+```{r}
+hist(autodata$mpg,xlab="mpg",ylab="count",main="Distribution of mpg")
+```
+From this chart I would say it is not normally distributed.
+
+*acceleration*
+Much like mpg the mean and median are very close and the 1st quartile and 3rd quartile differ from the mean at a similar distance, so again I'll use a histogram to see what this data looks like. 
+
+```{r}
+hist(autodata$acceleration,xlab="acceleration",ylab="count",main="Distribution of acceleration")
+```
+This looks more normally distributed than mpg. 
+
+I've actually decided to draw a histogram for each vector to help me understand the data points in the summary. 
+
+*cylinders*
+```{r}
+hist(autodata$cylinders,xlab="cylinders",ylab="count",main="Distribution of cylinders")
+```
+cylinders is absolutely not normally distributed.
+
+*model.year*
+```{r}
+hist(autodata$model.year,xlab="model year",ylab="count",main="Distribution of model year")
+```
+model year is not normally distributed
+
+*displacement*
+```{r}
+hist(autodata$displacement,xlab="displacement",ylab="count",main="Distribution of displacement")
+```
+displacment is not normally distributed
+
+*origin*
+```{r}
+hist(autodata$origin,xlab="origin",ylab="count",main="Distribution of origin")
+```
+Origin is not normally distributed
+
+*weight*
+```{r}
+hist(autodata$weight,xlab="weight",ylab="count",main="Distribution of weight")
+```
+weight is not normally distributed. 
+
+**Conclusion**
+
+Acceleration is the only normally distrubuted data point, although mpg also appears to be normal only skewed. I am going to work with acceleration. 
+
+# 6. Compute a 95% confidence interval for the mean for one of the variable that appears to be normally distributed. 
+
+I use a t test as this works for both student t and normal distribution for samples of 30 or more. 
+
+```{r}
+t.test(autodata$acceleration)
+```
+
+I am 95% confident that the mean falls between the values 15.30 and 15.84 (2dp)
+
+# 7. What proportion of the cars are from the 80s?
+
+Cars are from the 70s and 80s. Let's view the data to see how the year is represented. 
+
+```{r}
+View(autodata$model.year)
+```
+This didn't give me what I wanted. I can see from my summary above that the range is from 70.00 to 82.00. So now I know the value is saved as just the final 2 numbers of the year. 
+
+I am going to create a frequency table.
+
+```{r}
+tab <- sort(table(autodata$model.year))
+  View(tab)
+```
+I could manually get the number from this but I'd like to get it programatically. 
+
+I tried this and don't think I can with base R. So to allow me to continue I'll just add up the values manually. 
+
+the number of cars from the 80s is 89, out of a total of 398 observations. 
+
+# 8. Compute a 90% confidence interval for the proportion of cars from the 80s.
+
+```{r}
+prop.test(89, 398, conf.level = 0.9)
+```
+
+90% confidence interval: 0.19 and 0.26
+
+# Extension: Compute the confidence intervals for the mean using the "bootstrap method"
+
+For this I am going to go back to acceleration
+
+```{r}
+plot(c(0,30),c(10,20),type="n",xlab="Sample size",ylab="Confidence interval")
+
+for (k in seq(5, 30, 3)){
+  a <- numeric(10000)
+  for (i in 1:100000) {
+    a[i] <- mean(sample(autodata$acceleration,k,replace=T))
+  }
+points(c(k,k),quantile(a,c(.025,.975)),type="b",pch=21,bg="red")
+}
+```
+
+The piece of code above is from page 63 of the 'Statistics: An Introduction Using R' - Crawley. Except an adjustment to the Y range as 0,60 was too zoomed out to see the level of detail needed. 
+
+```{r}
+quantile(a,c(0.025,0.975))
+```
+
+When calculating using R I found that the 95% confidence interval is 15.30 and 15.84 (2dp), bootstrapping gave me 14.58 and 16.59 - a wider interval.
+
+## 2 - Distributions
+Assume that among diabetics the fasting blood level of glucose is approximately normally distributed with a mean of 105 mg per 100 ml and a standard deviation of 9mg per 100ml.
+
+# (a) Plot the density function for this distribution.
+
+```{r}
+# create some samples to plot
+samples = rnorm(10000, mean = 105, sd = 9)
+
+# create ~100 values to make a smooth looking density plot to overlay the histogram
+xv <- seq(75, 140,0.5)
+
+# I got the 50,000 number through trial and error... Not sure why it's that.
+yv <- 50000*dnorm(xv,105,9)
+
+
+hist(samples)
+lines(xv,yv,col="red")
+```
+
+
+# (b) What proportion of diabetics have levels between 90 and 125 mg per 100ml? (This quantity is represented by the area under the normal curve between x=90 and x=125)
+
+```{r}
+# First convert the mg per 100ml values into a number of standard deviations from the mean
+lowerZ <- (90 - 105)/9 # mean = 105, sd = 9
+higherZ <- (125 - 105)/9
+
+proportionValue <- pnorm(higherZ)-pnorm(lowerZ)
+
+# Proportion falling between x=90 and x=125 is 93.91%
+```
+
+
+# (c) You should see from the plot that most of the area under the normal curve is contained between the two vertical lines. Therefore we should expect that the proportion of diabetics with levels between 90 and 125 mg per 100 ml to be high. Use the pnorm function to calculate this proportion. (you may need to use it twice)
+
+# (d) What level cuts off the lower 10% of diabetics? (hint: use qnorm)
+
+```{r}
+qnorm(0.1,mean = 105, sd = 9)
+
+# 10% of values fall below 93.47 mg per 100ml
+```
+

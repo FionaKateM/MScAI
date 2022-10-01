@@ -1,0 +1,86 @@
+R is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.[6] Users have created packages to augment the functions of the R language.
+According to user surveys and studies of scholarly literature databases, R is one of the most commonly used programming languages used in data mining.[7] As of March 2022, R ranks 11th in the TIOBE index, a measure of programming language popularity, in which the language peaked in 8th place in August 2020.[8][9]
+The official R software environment is an open-source free software environment within the GNU package, available under the GNU General Public License. It is written primarily in C, Fortran, and R itself (partially self-hosting). Precompiled executables are provided for various operating systems. R has a command line interface.[10] Multiple third-party graphical user interfaces are also available, such as RStudio, an integrated development environment, and Jupyter, a notebook interface.
+
+R is an open-source implementation of the S programming language combined with lexical scoping semantics from Scheme, which allow objects to be defined in predetermined blocks rather than the entirety of the code.[1] S was created by Rick Becker, John Chambers, Doug Dunn, Jean McRae, and Judy Schilling at Bell Labs around 1976. Designed for statistical analysis, the language is an interpreted language whose code could be directly run without a compiler.[11] Many programs written for S run unaltered in R.[10] As a dialect of the Lisp language, Scheme was created by Gerald J. Sussman and Guy L. Steele Jr. at MIT around 1975.[12]
+In 1991, statisticians Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand, embarked on an S implementation.[13] It was named partly after the first names of the first two R authors and partly as a play on the name of S.[10] They began publicizing it on the data archive StatLib and the s-news mailing list in August 1993.[14] In 1995, statistician Martin Mächler convinced Ihaka and Gentleman to make R free and open-source software under the GNU General Public License.[14][15][16] The first official release came in June 1995.[14] The first official "stable beta" version (v1.0) was released on 29 February 2000.[17][18]
+The Comprehensive R Archive Network (CRAN) was officially announced on 23 April 1997. CRAN stores R's executable files, source code, documentations, as well as packages contributed by users. CRAN originally had 3 mirrors and 12 contributed packages.[19] As of January 2022, it has 101 mirrors[20] and 18,728 contributed packages.[21] In addition to hosting packages CRAN hosts binaries for major distributions of Linux, MacOS and Windows.[22]
+The R Core Team was formed in 1997 to further develop the language.[10][23] As of January 2022, it consists of Chambers, Gentleman, Ihaka, and Mächler, plus statisticians Douglas Bates, Peter Dalgaard, Kurt Hornik, Michael Lawrence, Friedrich Leisch, Uwe Ligges, Thomas Lumley, Sebastian Meyer, Paul Murrell, Martyn Plummer, Brian Ripley, Deepayan Sarkar, Duncan Temple Lang, Luke Tierney, and Simon Urbanek, as well as computer scientist Tomas Kalibera. Stefano Iacus, Guido Masarotto, Heiner Schwarte, Seth Falcon, Martin Morgan, and Duncan Murdoch were members.[14][24] In April 2003,[25] the R Foundation was founded as a non-profit organization to provide further support for the R project.[10]
+
+Data processing[edit]
+R's data structures include vectors, arrays, lists, and data frames.[26] Vectors are ordered collections of values and can be mapped to arrays of one or more dimensions in a column major order. That is, given an ordered collection of dimensions, one fills in values along the first dimension first, then fill in one-dimensional arrays across the second dimension, and so on.[27] R supports array arithmetics and in this regard is like languages such as APL and MATLAB.[26][28] The special case of an array with two dimensions is called a matrix. Lists serve as collections of objects that do not necessarily have the same data type. Data frames contain a list of vectors of the same length, plus a unique set of row names.[26] R has no scalar data type.[29] Instead, a scalar is represented as a length-one vector.[30]
+R and its libraries implement various statistical techniques, including linear, generalized linear and nonlinear modeling, classical statistical tests, spatial and time-series analysis, classification, clustering, and others. For computationally intensive tasks, C, C++, and Fortran code can be linked and called at run time. Another of R's strengths is static graphics; it can produce publication-quality graphs that include mathematical symbols.[31]
+Programming[edit]
+R is an interpreted language; users can access it through a command-line interpreter. If a user types 2+2 at the R command prompt and presses enter, the computer replies with 4.
+R supports procedural programming with functions and, for some functions, object-oriented programming with generic functions.[32] Due to its S heritage, R has stronger object-oriented programming facilities than most statistical computing languages.[citation needed] Extending it is facilitated by its lexical scoping rules, which are derived from Scheme.[33] R uses S-expressions to represent both data and code.[citation needed] R's extensible object system includes objects for (among others): regression models, time-series and geo-spatial coordinates. Advanced users can write C, C++,[34] Java,[35] .NET[36] or Python code to manipulate R objects directly.[37]
+Functions are first-class objects and can be manipulated in the same way as data objects, facilitating meta-programming that allows multiple dispatch. Function arguments are passed by value, and are lazy—that is to say, they are only evaluated when they are used, not when the function is called.[38] A generic function acts differently depending on the classes of the arguments passed to it. In other words, the generic function dispatches the method implementation specific to that object's class. For example, R has a generic print function that can print almost every class of object in R with print(objectname).[39] Many of R's standard functions are written in R,[citation needed] which makes it easy for users to follow the algorithmic choices made. R is highly extensible through the use of packages for specific functions and specific applications.
+
+R's capabilities are extended through user-created[40] packages, which offer statistical techniques, graphical devices, import/export, reporting (RMarkdown, knitr, Sweave), etc. These packages and their easy installation and use has been cited as driving the language's widespread adoption in data science.[41][42][43][44][45] The packaging system is also used by researchers to organize research data, code and report files in a systematic way for sharing and archiving.[46]
+Multiple packages are included with the basic installation. Additional packages are available on CRAN,[20] Bioconductor, R-Forge,[47] Omegahat,[48] GitHub, and other repositories.[49][50][51]
+The "Task Views" on the CRAN website[52] lists packages in fields including Finance, Genetics, High Performance Computing, Machine Learning, Medical Imaging, Meta-Analysis,[53] Social Sciences and Spatial Statistics.[53] R has been identified by the FDA as suitable for interpreting data from clinical research.[54] Microsoft maintains a daily snapshot of CRAN that dates back to Sept. 17, 2014.[55]
+Other R package resources include R-Forge,[56][47] a platform for the collaborative development of R packages. The Bioconductor project provides packages for genomic data analysis, including object-oriented data-handling and analysis tools for data from Affymetrix, cDNA microarray, and next-generation high-throughput sequencing methods.[57]
+A group of packages called the Tidyverse, which can be considered a "dialect" of the R language, is increasingly popular among developers.[note 1] It strives to provide a cohesive collection of functions to deal with common data science tasks, including data import, cleaning, transformation and visualisation (notably with the ggplot2 package). Dynamic and interactive graphics are available through additional packages.[58]
+R is one of 5 languages with an Apache Spark API, along with Scala, Java, Python, and SQL.[59][60]
+
+Various applications can be used to edit or run R code.[69]
+Early developers preferred to run R via the command line console,[70] succeeded by those who prefer an IDE.[71] IDEs for R include (in alphabetical order) R.app (OSX/macOS only), Rattle GUI, R Commander, RKWard, RStudio, and Tinn-R.[70] R is also supported in multi-purpose IDEs such as Eclipse via the StatET plugin,[72] and Visual Studio via the R Tools for Visual Studio.[73] Of these, RStudio is the most commonly used.[71]
+Statistical frameworks which use R in the background include Jamovi and JASP.
+Editors that support R include Emacs, Vim (Nvim-R plugin),[74] Kate,[75] LyX,[76] Notepad++,[77] Visual Studio Code, WinEdt,[78] and Tinn-R.[79] Jupyter Notebook can also be configured to edit and run R code.[80]
+R functionality is accessible from scripting languages including Python,[81] Perl,[82] Ruby,[83] F#,[84] and Julia.[85] Interfaces to other, high-level programming languages, like Java[86] and .NET C#[87][88] are available.
+
+The main R implementation is written in R, C, and Fortran.[89] Several other implementations aimed at improving speed or increasing extensibility. A closely related implementation is pqR (pretty quick R) by Radford M. Neal with improved memory management and support for automatic multithreading. Renjin and FastR are Java implementations of R for use in a Java Virtual Machine. CXXR, rho, and Riposte[90] are implementations of R in C++. Renjin, Riposte, and pqR attempt to improve performance by using multiple cores and deferred evaluation.[91] Most of these alternative implementations are experimental and incomplete, with relatively few users, compared to the main implementation maintained by the R Development Core Team.
+TIBCO, who previous sold the commercial implementation S-PLUS, built a runtime engine called TERR, which is part of Spotfire.[92]
+Microsoft R Open (MRO) is a fully compatible R distribution with modifications for multi-threaded computations.[93][94] As of 30 June 2021, Microsoft started to phase out MRO in favor of the CRAN distribution.[95]
+
+R has local communities worldwide for users to network, share ideas, and learn.[96][97]
+A growing number of R events bring users together, such as conferences (e.g. useR!, WhyR?, conectaR, SatRdays),[98][99] meetups,[100] as well as R-Ladies groups[101] that promote gender diversity. The R Foundation taskforce focuses on women and other under-represented groups.[102]
+
+The official annual gathering of R users is called "useR!".[103] The first such event was useR! 2004 in May 2004, Vienna, Austria.[104] After skipping 2005, the useR! conference has been held annually, usually alternating between locations in Europe and North America.[105] History:[103]
+	•	useR! 2006, Vienna, Austria
+	•	useR! 2007, Ames, Iowa, US
+	•	useR! 2008, Dortmund, Germany
+	•	useR! 2009, Rennes, France
+	•	useR! 2010, Gaithersburg, Maryland, US
+	•	useR! 2011, Coventry, United Kingdom
+	•	useR! 2012, Nashville, Tennessee, US
+	•	useR! 2013, Albacete, Spain
+	•	useR! 2014, Los Angeles, California, US
+	•	useR! 2015, Aalborg, Denmark
+	•	useR! 2016, Stanford, California, US
+	•	useR! 2017, Brussels, Belgium
+	•	useR! 2018, Brisbane, Australia
+	•	useR! 2019, Toulouse, France
+	•	useR! 2020, took place online due to COVID-19 pandemic
+	•	useR! 2021, took place online due to COVID-19 pandemic
+	•	useR! 2022, took place online due to COVID-19 pandemic
+The dates and the location for the next useR! event is to be decided as of July 2022.
+
+The R Journal is an open access, refereed journal of the R project. It features short to medium length articles on the use and development of R, including packages, programming tips, CRAN news, and foundation news.
+
+R is comparable to popular commercial statistical packages such as SAS, SPSS, and Stata. One difference is that R is available at no charge under a free software license.[106]
+In January 2009, the New York Times ran an article charting the growth of R, the reasons for its popularity among data scientists and the threat it poses to commercial statistical packages such as SAS.[107] In June 2017 data scientist Robert Muenchen published a more in-depth comparison between R and other software packages, "The Popularity of Data Science Software".[108]
+R is more procedural than either SAS or SPSS, both of which make heavy use of pre-programmed procedures (called "procs") that are built-in to the language environment and customized by parameters of each call. R generally processes data in-memory, which limits its usefulness in processing larger files.[109]
+
+Although R is an open-source project, some companies provide commercial support and extensions.
+In 2007, Richard Schultz, Martin Schultz, Steve Weston and Kirk Mettler founded Revolution Analytics to provide commercial support for Revolution R, their distribution of R, which includes components developed by the company. Major additional components include: ParallelR, the R Productivity Environment IDE, RevoScaleR (for big data analysis), RevoDeployR, web services framework, and the ability for reading and writing data in the SAS file format.[110] Revolution Analytics offers an R distribution designed to comply with established IQ/OQ/PQ criteria that enables clients in the pharmaceutical sector to validate their installation of REvolution R.[111] In 2015, Microsoft Corporation acquired Revolution Analytics[112] and integrated the R programming language into SQL Server, Power BI, Azure SQL Managed Instance, Azure Cortana Intelligence, Microsoft ML Server and Visual Studio 2017.[113]
+In October 2011, Oracle announced the Big Data Appliance, which integrates R, Apache Hadoop, Oracle Linux, and a NoSQL database with Exadata hardware.[114] As of 2012, Oracle R Enterprise became one of two components of the "Oracle Advanced Analytics Option" (alongside Oracle Data Mining).[citation needed]
+IBM offers support for in-Hadoop execution of R, and provides a programming model for massively parallel in-database analytics in R.
+TIBCO offers a runtime-version R as a part of Spotfire.
+Mango Solutions offers a validation package for R, ValidR, to comply with drug approval agencies, such as the FDA. These agencies required the use of validated software, as attested by the vendor or sponsor.
+
+Basic syntax
+The following examples illustrate the basic syntax of the language and use of the command-line interface. (An expanded list of standard language features can be found in the R manual, "An Introduction to R".)
+In R, the generally preferred assignment operator is an arrow made from two characters <-, although = can be used in some cases.
+
+Structure of a function
+One of R's strengths is the ease of creating new functions. Objects in the function body remain local to the function, and any data type may be returned.[126] Example:
+
+Modeling and plotting
+The R language has built-in support for data modeling and graphics. The following example shows how R can easily generate and plot a linear model with residuals.
+
+	•	use of community-developed external libraries (called packages), in this case caTools package
+	•	handling of complex numbers
+	•	multidimensional arrays of numbers used as basic data type, see variables C, Z and X.
+
+Short R code calculating Mandelbrot set through the first 20 iterations of equation z = z2 + c plotted for different complex constants c. This example demonstrates:
+

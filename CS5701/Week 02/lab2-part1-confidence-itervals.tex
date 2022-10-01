@@ -1,0 +1,274 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Lab2 - inferential statistics - confidence intervals},
+  pdfauthor={Isabel Sassoon},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lab2 - inferential statistics - confidence intervals}
+\author{Isabel Sassoon}
+\date{28/09/2022}
+
+\begin{document}
+\maketitle
+
+\hypertarget{confidence-intervals-in-r}{%
+\section{Confidence Intervals in R}\label{confidence-intervals-in-r}}
+
+We will be showing you how to use R to compute the confidence intervals
+for a proportion and for a mean.
+
+\hypertarget{confidence-interval-for-a-proportion}{%
+\subsection{Confidence interval for a
+proportion}\label{confidence-interval-for-a-proportion}}
+
+A Market research agency interviews a random sample of 1000 people who
+live in London, and finds that 49\% of people suggest they will vote
+Labour for the London Mayor. Find a 95\% and a 90\% confidence interval
+for the true proportion of voters who will vote for a Labour Mayor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{490}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  490 out of 1000, null probability 0.5
+## X-squared = 0.361, df = 1, p-value = 0.548
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4586166 0.5214612
+## sample estimates:
+##    p 
+## 0.49
+\end{verbatim}
+
+95 percent confidence interval: 0.46 0.52
+
+\hypertarget{what-about-the-90-ci}{%
+\subsection{What about the 90\% CI?}\label{what-about-the-90-ci}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{490}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  490 out of 1000, null probability 0.5
+## X-squared = 0.361, df = 1, p-value = 0.548
+## alternative hypothesis: true p is not equal to 0.5
+## 90 percent confidence interval:
+##  0.4635617 0.5164933
+## sample estimates:
+##    p 
+## 0.49
+\end{verbatim}
+
+The 90\% confidence interval is
+
+0.46 0.52
+
+In this case when apprximated to 2 decimal places the confidence
+intervals are almost identical!
+
+\hypertarget{confidence-interval-for-the-mean}{%
+\subsection{Confidence interval for the
+mean}\label{confidence-interval-for-the-mean}}
+
+\hypertarget{reading-in-from-csv---use-the-skew-data.csv}{%
+\subsubsection{Reading in from csv - use the skew
+data.csv}\label{reading-in-from-csv---use-the-skew-data.csv}}
+
+A bit more practice in reading data into R. Make sure you have the
+skewdata.csv file in the same location as your R project. In this case I
+have it stored in a subfolder called data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(}\StringTok{"skewdata.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{visualise-the-data}{%
+\subsection{Visualise the data}\label{visualise-the-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      values      
+##  Min.   : 4.943  
+##  1st Qu.:19.231  
+##  Median :25.546  
+##  Mean   :30.969  
+##  3rd Qu.:38.580  
+##  Max.   :81.691
+\end{verbatim}
+
+This data contains only one variable. We can see its mean is 30.969.
+
+\hypertarget{what-is-the-95-confidence-interval-for-this-variable}{%
+\section{What is the 95\% confidence interval for this
+variable?}\label{what-is-the-95-confidence-interval-for-this-variable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{values)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data$values
+## t = 9.239, df = 29, p-value = 3.852e-10
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  24.11317 37.82414
+## sample estimates:
+## mean of x 
+##  30.96866
+\end{verbatim}
+
+The 95 percent confidence interval: is 24.11 37.82
+
+\hypertarget{we-can-do-the-same-for-the-90-percent-confidence-interval}{%
+\subsection{We can do the same for the 90 percent confidence
+interval}\label{we-can-do-the-same-for-the-90-percent-confidence-interval}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{values, }\AttributeTok{conf.level =} \FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data$values
+## t = 9.239, df = 29, p-value = 3.852e-10
+## alternative hypothesis: true mean is not equal to 0
+## 90 percent confidence interval:
+##  25.27328 36.66403
+## sample estimates:
+## mean of x 
+##  30.96866
+\end{verbatim}
+
+90 percent confidence interval: 25.27 36.66
+
+We can see that the confidence interval is smaller as we decrease our
+confidence level.
+
+\end{document}

@@ -1,0 +1,68 @@
+---
+title: "weather project"
+output: html_document
+date: "2022-09-19"
+---
+
+No idea what this is
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Import ggplot2 library
+```{r}
+library(ggplot2)
+```
+
+2) Assign weather data csv to 'weather' variable 
+```{r}
+weather <- read.csv("weather.csv")
+```
+
+```{r}
+summary(weather)
+```
+
+caluclate mode function
+```{r}
+findmodes <- function(a) {
+  u_val <- unique(a)
+  tab <- tabulate(match(a, u_val))
+  u_val[tab == max(tab)]
+}
+```
+
+
+3) mean, mode and median of Temp_C column
+```{r}
+mean <- mean(weather$Temp_C)
+mode <- findmodes(weather$Temp_C)
+median <- median(weather$Temp_C)
+
+mean
+mode
+median
+```
+
+4) frequency table for 'Weather' column
+```{r}
+table(weather$Weather)
+```
+
+5) Scatterplot of Temperature and Humidity
+```{r}
+plot(weather$Temp_C, weather$Rel.Hum_., main="Temperature & Humidity", xlab="temp", ylab="humidity")
+```
+Between the temperatures of 5 and 24 humdity can generally be any value, although is most likely to be above 40. At about 24 degrees the humidity is less likely to be above 70. 
+
+
+6) Same graph plotted using ggplot2
+```{r}
+ggplot(weather, aes(x=Temp_C, y=Rel.Hum_.)) + geom_point()
+```
+
+7) Histogram showing tempratures
+```{r}
+hist(weather$Temp_C, xlab="temp", col="pink")
+```
+
