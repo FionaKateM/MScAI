@@ -1,0 +1,24 @@
+---
+title: "Week 1"
+author: "Fiona Kate Morgan"
+date: "2022-09-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Week 1 markdown notebook
+
+```{r}
+my_first_number <- 23
+x <- 2
+y <-5
+```
+
+```{r}
+x+x+24
+x+y
+```
+
