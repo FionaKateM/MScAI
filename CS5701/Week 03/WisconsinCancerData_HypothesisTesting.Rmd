@@ -1,0 +1,124 @@
+---
+title: "WisconsinCancerData_HypothesisTesting"
+author: "Fiona Kate Morgan"
+date: "2022-10-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Wisconsin Cancer Data
+*Using the data on breast cancer diagnosis from the University of Wisconsin. This data set contains 4 variables: Diagnosis (M = malignant, B = benign), radius.mean, radius.standard deviation and radius max. These are based on measurements taken from tumour cells in each patient.*
+
+## Read the csv file
+*Read in the data set breastCancer Wissonsin.csv. This is a sample of data on Breast Cancer.*
+
+```{r}
+cancerData <- read.csv("data/BreastCancer_Wisconsin.csv")
+```
+
+## Explore the data
+*Explore the data and the variables. You can do this through the use of numerical summaries and graphs.*
+
+```{r}
+summary(cancerData)
+```
+There are 4 variables; diagnosis - which is a character string, radium.mean, radius.sd and radius.max which are all numerical. 
+
+## Diagnosis variable
+I'm interested to see what kinds of values the diagnosis vector contains so I'll create a table. 
+
+```{r}
+table(cancerData$diagnosis)
+```
+There are 2 options, making it a a categorial piece of data. B - benign and M - malignant. 
+
+## Radius mean
+```{r}
+summary(cancerData$radius.mean)
+hist(cancerData$radius.mean)
+```
+From this histogram the radius.mean looks to be not normally distributed, and skewed to the left.
+
+It would be interesting to see whether this looks different for malignent and benign tumors. 
+
+```{r}
+# malignant radius mean
+malignant <- cancerData[cancerData$diagnosis=="M",]
+hist(malignant$radius.mean)
+
+# benign radius mean
+benign <- cancerData[cancerData$diagnosis=="B",]
+hist(benign$radius.mean)
+```
+As the x-axis is different scales this is difficult to analyse by eye. I'll adjust the x-scale.
+
+```{r}
+# malignant radius mean
+hist(malignant$radius.mean, xlim = c(0,30))
+
+# benign radius mean
+hist(benign$radius.mean, xlim = c(0,30))
+```
+From this is it much easier to compare the data. 
+There are no malignant tumors below 10 radius mean, and very few benign above 15. 
+
+Is there a difference in the variances of the two samples?
+
+```{r}
+var.test(benign$radius.mean, malignant$radius.mean)
+```
+The variances are not equal and I reject the null hypothesis. 
+
+## Significant difference in mean
+First I need to test to see whether the samples are normally distributed to see whether I can use the t.test. I'll do this using a Q-Q plot. 
+
+```{r}
+qqnorm(benign$radius.mean, main = "Q-Q Benign")
+qqline(benign$radius.mean)
+
+qqnorm(malignant$radius.mean, main = "Q-Q Malignant")
+qqline(malignant$radius.mean)
+
+var.test(benign$radius.mean, malignant$radius.mean)
+wilcox.test(benign$radius.mean, malignant$radius.mean)
+```
+Neither the benign or malignant radius mean is normally distributed so I cannot use the student's t-test and instead must use the Wilcoxon Rank-Sum test. However this requires that the variances are equal, which I have already disproven. 
+
+
+## Proportion calulation
+*Compute the proportion of tumours classified as benign (b) in the sample data you read in in step (a)*
+```{r}
+# calculate the number of rows that contain a "B" (for benign) in the diagnosis column
+benignCount <- nrow(cancerData[cancerData$diagnosis=="B",])
+
+# calculate the total number of entries
+totalCount <- nrow(cancerData)
+
+# calculate the count of entries marked as benign as a proportion of the total
+benignProportion <- benignCount/totalCount
+```
+I did all the calculations within R in case the data changes or updates in the future. 
+
+## Hypothesis testing the proportion
+*The proportion of benign tumours in the population from which this sample data is drawn from is 0.6. Is the proportion in this sample data supportive of this proportion in the population? Write out the hypothesis to test and run this hypothesis test in R. Is H0 rejected when α = 0.05?*
+
+The null hypothesis here is that the mean is equal to 0.6, therefore the alternate hypothesis is that it is not equal to 0.6. 
+In this case $H_0: \mu =0.6$ and $H_1:\mu \ne 0.6$
+
+Because it is a proportion, I'll use the prop.test. And because the alternate is 'not equal to' I will use a two-sided test.
+
+There is no need to specify the confidence level when working with 0.05 as that is the default. 
+
+```{r}
+prop.test(benignCount,totalCount, p=0.6, alternative = "two.sided")
+```
+The p-value is 0.1963, which means there is nearly a 20% chance that this sample could have come from a population with 60% benign cancer entries, therefore we cannot reject the null hypothesis. 
+
+
+(f) Is there a significant difference between the radius mean for benign vs malignant? (Hint: use both numerical and visual clues)
+
+
+(g) in step (c) you computed the proportion of tumours classified as benign. What is the 95% confidence interval for this proportion?

@@ -1,0 +1,131 @@
+---
+title: "Week04-part2"
+author: "Fiona Kate Morgan"
+date: "2022-10-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Linear regression and correlation
+In an investigation conducted by Secher et al., (1987), The birth weight (BW) in grams for 107 babies was ascertained. For all babies, both the abdominal (AD) and biparietal (BPD) diameters (in mm) were measured shortly before birth using ultrasound.
+The purpose of this study was to describe the relationship between birthweight and these two ultrasound measurements in order to establish a way to predict birthweight (or fetus weight).
+The data includes the following variables:
+• bw: Birth weight of the baby in grams
+• bpd: biparietal diameter (in mm), as determined by ultrasound
+• ad: abdominal diameter (in mm), as determined by ultrasound
+• id: identification of the mother (ignore this is not needed for the analysis)
+
+## 1. Load the birthweight.csv data into R studio
+```{r}
+library(tidyverse)
+birthweightData <- read.csv('data/birthweight.csv', sep=";")
+```
+The csv file separated the columns of data with a semi-colon so I needed to add the extra input to the read function to allow for this. 
+
+## 2. Explore the data numerically and graphically
+```{r}
+head(birthweightData)
+```
+```{r}
+summary(birthweightData)
+
+# Renaming the birthweight column to avoid confusion between bpd / ad (pre-birth measurements) and bw
+names(birthweightData)[names(birthweightData) == "bw"] <- "birthweight"
+
+```
+
+
+```{r}
+boxplot(birthweightData$bpd, birthweightData$ad, names = c("bpd", "ad"))
+```
+There is a greater spread in the abdominal diameter (ad) than the biparietal diameter (bpd).
+
+## 3. Are the three numerical columns correlated?
+First I'm going to look individually at each of the pre-birth measurements to see if they have a correlation to the birthweight.
+Starting with abdominal diameter (ad)
+```{r}
+cor.test(birthweightData$birthweight, birthweightData$ad)
+```
+The null hypothesis is that there is no correlation, and with the incredibly low p-value I am confident in rejecting the null hypothesis - suggesting that there is in face a correlation between abdominal diameter and the birthweight of a baby. 
+
+Next I shall complete the same correlation test for biparietal diameter (bpd). 
+```{r}
+cor.test(birthweightData$birthweight, birthweightData$bpd)
+```
+This is a slightly weaker correlation, however it is high enough and with great enough significance that I can once again reject the null hypothesis (that there is no correlation). 
+
+These two tests show a correlation between the birthweight and the two pre-birth measurements respectively. 
+
+Now I am interested to see whether there is any correlation between the two pre-birth measurements.
+```{r}
+cor.test(birthweightData$bpd, birthweightData$ad)
+```
+Again, there this data shows a significant correlation between the two data points. I reject the null hypothesis that there is no correlation between the two pre-birth measurements. 
+
+## 4. Build two linear regression models, each should have bw as the dependent variable and bpd or ad as the explanatory variable
+```{r}
+bpd.lm <- lm(birthweightData$birthweight~birthweightData$bpd, data=birthweightData)
+summary(bpd.lm)
+```
+The bpd.lm model shows that for every mm in the biparietal diameter measurement, the birthweight increases by 92.14 grams.
+Both the x-coefficient and the y-intercept values are significant, as shown from their p-values, as is the overall p-value of this model.
+
+```{r}
+plot(bpd.lm)
+```
+There is a gentle u-shape in the residuals plot, suggesting that there may well be another element affecting the shape of these data. However the Q-Q plot appears to show a relatively normal spread up until the upper quartiles. I am really happy with the shape of the 3rd plot, as this appears to be pretty shapeless - which is what I like to see.
+
+Now for the ad model. 
+```{r}
+ad.lm <- lm(birthweightData$birthweight~birthweightData$ad, data=birthweightData)
+summary(ad.lm)
+```
+This model shows a significant correlation.
+
+For every mm in the abdominal diameter measurement the birthweight increases by 55.12 grams. 
+
+```{r}
+plot(ad.lm)
+```
+The resudiuals plot for ad is much more shapeless than bpd, suggesting to me that this model may be better at predicting the birthweight. The Q-Q plot also tends much more to the normal line. 
+
+## 5. Compare the diagnostics and fit of each of the two models Using only one predictor at a time, which is better at predicting AD or BD? and explain why?
+
+From my analysis above I think the ad plot is going to perform better... 
+
+## 6. (OPTIONAL) Try some transformations
+
+
+## 7. An expectant mother has been told their bpd is 80 - what is the estimated birthweight? Explain your answer
+```{r}
+birthweightFromBPD <- function(n)
+# This function calculates the expected birthweight (g) given the bpd measurement in mm  
+{
+  bpd <- n
+  weight <- (92.141*bpd)-5505.406
+  return(weight)
+}
+
+birthweightFromBPD(80)
+```
+The range of birthweights goes from 1150 to 4850 and the range of bpd goes from 64 to 100, so this output feels about right. 
+
+
+
+## 8. An expectant mother has been told their ad is 105 - what is the estimated birthweight? Explain your answer
+
+```{r}
+birthweightFromAD <- function(n)
+# This function calculates the expected birthweight (g) given the bpd measurement in mm  
+{
+  ad <- n
+  weight <- (55.122*ad)-2867.916
+  return(weight)
+}
+
+birthweightFromAD(105)
+```
+The range of ad goes from 71 to 133, so once again the output of 2920g feels about right. 
